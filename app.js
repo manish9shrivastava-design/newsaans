@@ -6,6 +6,9 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
+"scripts": {
+  "start": "node app.js"
+}
 
 // keep the rest of your routes here
 
