@@ -81,6 +81,22 @@ function renderTable(data) {
       <td contenteditable data-field="DistrictInaugurated">${row.DistrictInaugurated || ''}</td>
       <td contenteditable data-field="BlocksInaugurated">${row.BlocksInaugurated || ''}</td>
       <td contenteditable data-field="ASHAsTrained">${row.ASHAsTrained || ''}</td>
+      <td contenteditable data-field="Nursing Officers">${row.Nursing Officers || ''}</td>
+      <td contenteditable data-field="Doctors Trained">${row.Doctors Trained || ''}</td>
+      <td contenteditable data-field="ASHAs House Visits">${row.ASHAs House Visits || ''}</td>
+      <td contenteditable data-field="Under 5 Assessed ASHAs">${row.Under 5 Assessed ASHAs || ''}</td>
+      <td contenteditable data-field="Under 5 Assessed ANM">${row.Under 5 Assessed ANM || ''}</td>
+      <td contenteditable data-field="Medicated">${row.Medicated || ''}</td>
+      <td contenteditable data-field="Referred">${row.Referred || ''}</td>
+      <td contenteditable data-field="Houses Risk Factors">${row.Houses Risk Factors || ''}</td>
+      <td contenteditable data-field="Homes Counseled M4M">${row.Homes Counseled M4M || ''}</td>
+      <td contenteditable data-field="Treated Cough/ORS">${row.Treated Cough/ORS || ''}</td>
+      <td contenteditable data-field="Treated Pneumonia">${row.Treated Pneumonia || ''}</td>
+      <td contenteditable data-field="Treated Severe Pneumonia">${row.Treated Severe Pneumonia || ''}</td>
+      <td contenteditable data-field="Medication Guidelines">${row.Medication Guidelines || ''}</td>
+      <td contenteditable data-field="Skill Stations">${row.Skill Stations || ''}</td>     
+      <td contenteditable data-field="PCV-1">${row.PCV-1 || ''}</td>   
+      <td contenteditable data-field="PCV-Booster">${row.PCV-Booster || ''}</td>                                                                                                
       <td><button class="btn btn-sm btn-primary save-btn">Save</button></td>
     `;
     tr.querySelector('.save-btn').onclick = () => saveRow(i, tr);
