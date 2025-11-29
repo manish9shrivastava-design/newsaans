@@ -60,7 +60,6 @@
 <button id="downloadBtn" class="btn btn-success">Download CSV</button>
 
 <script>
-<script>
 const form = document.getElementById('captureForm');
 const tableBody = document.querySelector('#dataTable tbody');
 
@@ -82,7 +81,6 @@ function renderTable(data) {
       <td contenteditable data-field="DistrictInaugurated">${row.DistrictInaugurated || ''}</td>
       <td contenteditable data-field="BlocksInaugurated">${row.BlocksInaugurated || ''}</td>
       <td contenteditable data-field="ASHAsTrained">${row.ASHAsTrained || ''}</td>
-      <!-- keep all the remaining fields with “|| ''” the same way -->
       <td><button class="btn btn-sm btn-primary save-btn">Save</button></td>
     `;
     tr.querySelector('.save-btn').onclick = () => saveRow(i, tr);
