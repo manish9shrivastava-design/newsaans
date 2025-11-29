@@ -12,39 +12,34 @@
 
 <form id="captureForm" class="mb-3">
   <div class="row g-3">
-    <!-- Fields based on provided Excel columns -->
-    <div class="col-md-3">
-      <label>Month</label>
-      <input type="text" class="form-control" name="Month" required />
-    </div>
-    <div class="col-md-3">
-      <label>Name of the Block</label>
-      <input type="text" class="form-control" name="BlockName" required />
-    </div>
-    <div class="col-md-6">
-      <label>Name of Nodal Officer Incharge</label>
-      <input type="text" class="form-control" name="NodalOfficer" required />
-    </div>
-    <div class="col-md-4">
-      <label>SAANS inaugurated at District Level?</label>
+    <div class="col-md-3"><label>Month</label><input type="text" class="form-control" name="Month" required /></div>
+    <div class="col-md-3"><label>Name of the Block</label><input type="text" class="form-control" name="BlockName" required /></div>
+    <div class="col-md-6"><label>Name of Nodal Officer Incharge</label><input type="text" class="form-control" name="NodalOfficer" required /></div>
+    <div class="col-md-4"><label>SAANS inaugurated at District Level?</label>
       <select class="form-select" name="DistrictInaugurated" required>
-        <option value="">Select</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
+        <option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option>
       </select>
     </div>
-    <div class="col-md-4">
-      <label>Number of Blocks that inaugurated SAANS</label>
-      <input type="number" class="form-control" name="BlocksInaugurated" min="0" />
-    </div>
-    <div class="col-md-4">
-      <label>No. of ASHAs trained on home visits</label>
-      <input type="number" class="form-control" name="ASHAsTrained" min="0" />
-    </div>
-
-    <!-- Add remaining fields similarly... (For brevity including main fields here; you can add all 23 fields similarly) -->
+    <div class="col-md-4"><label>Number of Blocks that inaugurated SAANS</label><input type="number" class="form-control" name="BlocksInaugurated" min="0" /></div>
+    <div class="col-md-4"><label>No. of ASHAs trained on home visits</label><input type="number" class="form-control" name="ASHAsTrained" min="0" /></div>
+    <div class="col-md-4"><label>No. of ANMS trained on SAANS</label><input type="number" class="form-control" name="ANMsTrained" min="0" /></div>
+    <div class="col-md-4"><label>No. of Nursing Officers trained on SAANS</label><input type="number" class="form-control" name="NursingOfficersTrained" min="0" /></div>
+    <div class="col-md-4"><label>No. of Doctors trained on SAANS</label><input type="number" class="form-control" name="DoctorsTrained" min="0" /></div>
+    <div class="col-md-4"><label>No. of ASHAs with house visits of under-five children</label><input type="number" class="form-control" name="ASHAsHouseVisits" min="0" /></div>
+    <div class="col-md-4"><label>No. under-five children assessed by ASHAs for symptoms</label><input type="number" class="form-control" name="UnderFiveAssessedByASHAs" min="0" /></div>
+    <div class="col-md-4"><label>No. under-five children assessed by ANM/Staff Nurse/Medical Officer</label><input type="number" class="form-control" name="UnderFiveAssessedByANM" min="0" /></div>
+    <div class="col-md-4"><label>No. under-five children administered pre-referral medication</label><input type="number" class="form-control" name="UnderFiveMedicated" min="0" /></div>
+    <div class="col-md-4"><label>No. under-five children referred to health facility by ASHA/ANM</label><input type="number" class="form-control" name="UnderFiveReferred" min="0" /></div>
+    <div class="col-md-4"><label>No. houses with at least 1 risk factor identified</label><input type="number" class="form-control" name="HousesWithRiskFactors" min="0" /></div>
+    <div class="col-md-4"><label>No. homes counseled using M4M approach</label><input type="number" class="form-control" name="HomesCounseledM4M" min="0" /></div>
+    <div class="col-md-4"><label>No. under-five children treated with cough syrup/ORS at community level</label><input type="number" class="form-control" name="UnderFiveTreatedCoughORS" min="0" /></div>
+    <div class="col-md-4"><label>No. under-five children treated with Pneumonia treatment at community/PHC level</label><input type="number" class="form-control" name="UnderFiveTreatedPneumonia" min="0" /></div>
+    <div class="col-md-4"><label>No. under-five children treated with Severe Pneumonia as per protocol</label><input type="number" class="form-control" name="UnderFiveTreatedSeverePneumonia" min="0" /></div>
+    <div class="col-md-4"><label>No. under-five children administered medication as per guidelines</label><input type="number" class="form-control" name="UnderFiveMedGuidelines" min="0" /></div>
+    <div class="col-md-4"><label>No. Skill Stations functional against approval</label><input type="number" class="form-control" name="SkillStationsFunctional" min="0" /></div>
+    <div class="col-md-4"><label>Infants given PCV-1 vs eligible</label><input type="text" class="form-control" name="InfantsGivenPCV1" /></div>
+    <div class="col-md-4"><label>Infants given PCV-Booster vs eligible</label><input type="text" class="form-control" name="InfantsGivenPCVBooster" /></div>
   </div>
-
   <button type="submit" class="btn btn-primary mt-3">Add Data</button>
 </form>
 
@@ -52,14 +47,11 @@
 <table class="table table-bordered table-sm" id="dataTable">
   <thead class="table-light">
     <tr>
-      <th>#</th>
-      <th>Month</th>
-      <th>Block Name</th>
-      <th>Nodal Officer</th>
-      <th>District Inaugurated</th>
-      <th>Blocks Inaugurated</th>
-      <th>ASHAs Trained</th>
-      <th>Actions</th>
+      <th>#</th><th>Month</th><th>Block Name</th><th>Nodal Officer</th><th>District Inaug.</th><th>Blocks Inaug.</th><th>ASHAs Trained</th>
+      <th>ANMs Trained</th><th>Nursing Officers</th><th>Doctors Trained</th><th>ASHAs House Visits</th><th>Under 5 Assessed ASHAs</th>
+      <th>Under 5 Assessed ANM</th><th>Medicated</th><th>Referred</th><th>Houses Risk Factors</th><th>Homes Counseled M4M</th>
+      <th>Treated Cough/ORS</th><th>Treated Pneumonia</th><th>Treated Severe Pneumonia</th><th>Medication Guidelines</th><th>Skill Stations</th>
+      <th>PCV-1</th><th>PCV-Booster</th><th>Actions</th>
     </tr>
   </thead>
   <tbody></tbody>
@@ -70,7 +62,6 @@
 <script>
 const form = document.getElementById('captureForm');
 const tableBody = document.querySelector('#dataTable tbody');
-let editIndex = -1;
 
 const fetchData = async () => {
   const res = await fetch('/data');
@@ -90,6 +81,23 @@ const renderTable = (data) => {
       <td contenteditable data-field="DistrictInaugurated">\${row.DistrictInaugurated}</td>
       <td contenteditable data-field="BlocksInaugurated">\${row.BlocksInaugurated}</td>
       <td contenteditable data-field="ASHAsTrained">\${row.ASHAsTrained}</td>
+      <td contenteditable data-field="ANMsTrained">\${row.ANMsTrained}</td>
+      <td contenteditable data-field="NursingOfficersTrained">\${row.NursingOfficersTrained}</td>
+      <td contenteditable data-field="DoctorsTrained">\${row.DoctorsTrained}</td>
+      <td contenteditable data-field="ASHAsHouseVisits">\${row.ASHAsHouseVisits}</td>
+      <td contenteditable data-field="UnderFiveAssessedByASHAs">\${row.UnderFiveAssessedByASHAs}</td>
+      <td contenteditable data-field="UnderFiveAssessedByANM">\${row.UnderFiveAssessedByANM}</td>
+      <td contenteditable data-field="UnderFiveMedicated">\${row.UnderFiveMedicated}</td>
+      <td contenteditable data-field="UnderFiveReferred">\${row.UnderFiveReferred}</td>
+      <td contenteditable data-field="HousesWithRiskFactors">\${row.HousesWithRiskFactors}</td>
+      <td contenteditable data-field="HomesCounseledM4M">\${row.HomesCounseledM4M}</td>
+      <td contenteditable data-field="UnderFiveTreatedCoughORS">\${row.UnderFiveTreatedCoughORS}</td>
+      <td contenteditable data-field="UnderFiveTreatedPneumonia">\${row.UnderFiveTreatedPneumonia}</td>
+      <td contenteditable data-field="UnderFiveTreatedSeverePneumonia">\${row.UnderFiveTreatedSeverePneumonia}</td>
+      <td contenteditable data-field="UnderFiveMedGuidelines">\${row.UnderFiveMedGuidelines}</td>
+      <td contenteditable data-field="SkillStationsFunctional">\${row.SkillStationsFunctional}</td>
+      <td contenteditable data-field="InfantsGivenPCV1">\${row.InfantsGivenPCV1}</td>
+      <td contenteditable data-field="InfantsGivenPCVBooster">\${row.InfantsGivenPCVBooster}</td>
       <td><button class="btn btn-sm btn-primary save-btn">Save</button></td>
     \`;
     tr.querySelector('.save-btn').onclick = () => saveRow(i, tr);
@@ -107,12 +115,9 @@ const saveRow = async (index, rowElement) => {
     headers: {'Content-Type':'application/json'},
     body: JSON.stringify(updatedData)
   });
-  if (res.ok) {
-    alert('Row updated');
-    fetchData();
-  } else {
-    alert('Error updating row');
-  }
+  if (res.ok) alert('Row updated');
+  else alert('Error updating row');
+  fetchData();
 };
 
 form.onsubmit = async (e) => {
@@ -135,7 +140,7 @@ const downloadCSV = () => {
   fetch('/data')
     .then(res => res.json())
     .then(data => {
-      if (data.length === 0) return;
+      if (!data.length) return;
       const keys = Object.keys(data[0]);
       const csv = [
         keys.join(','),
