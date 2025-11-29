@@ -60,93 +60,88 @@
 <button id="downloadBtn" class="btn btn-success">Download CSV</button>
 
 <script>
+<script>
 const form = document.getElementById('captureForm');
 const tableBody = document.querySelector('#dataTable tbody');
 
-const fetchData = async () => {
+async function fetchData() {
   const res = await fetch('/data');
   const data = await res.json();
   renderTable(data);
-};
+}
 
-const renderTable = (data) => {
+function renderTable(data) {
   tableBody.innerHTML = '';
   data.forEach((row, i) => {
     const tr = document.createElement('tr');
-    tr.innerHTML = \`
-      <td>\${i+1}</td>
-      <td contenteditable data-field="Month">\${row.Month}</td>
-      <td contenteditable data-field="BlockName">\${row.BlockName}</td>
-      <td contenteditable data-field="NodalOfficer">\${row.NodalOfficer}</td>
-      <td contenteditable data-field="DistrictInaugurated">\${row.DistrictInaugurated}</td>
-      <td contenteditable data-field="BlocksInaugurated">\${row.BlocksInaugurated}</td>
-      <td contenteditable data-field="ASHAsTrained">\${row.ASHAsTrained}</td>
-      <td contenteditable data-field="ANMsTrained">\${row.ANMsTrained}</td>
-      <td contenteditable data-field="NursingOfficersTrained">\${row.NursingOfficersTrained}</td>
-      <td contenteditable data-field="DoctorsTrained">\${row.DoctorsTrained}</td>
-      <td contenteditable data-field="ASHAsHouseVisits">\${row.ASHAsHouseVisits}</td>
-      <td contenteditable data-field="UnderFiveAssessedByASHAs">\${row.UnderFiveAssessedByASHAs}</td>
-      <td contenteditable data-field="UnderFiveAssessedByANM">\${row.UnderFiveAssessedByANM}</td>
-      <td contenteditable data-field="UnderFiveMedicated">\${row.UnderFiveMedicated}</td>
-      <td contenteditable data-field="UnderFiveReferred">\${row.UnderFiveReferred}</td>
-      <td contenteditable data-field="HousesWithRiskFactors">\${row.HousesWithRiskFactors}</td>
-      <td contenteditable data-field="HomesCounseledM4M">\${row.HomesCounseledM4M}</td>
-      <td contenteditable data-field="UnderFiveTreatedCoughORS">\${row.UnderFiveTreatedCoughORS}</td>
-      <td contenteditable data-field="UnderFiveTreatedPneumonia">\${row.UnderFiveTreatedPneumonia}</td>
-      <td contenteditable data-field="UnderFiveTreatedSeverePneumonia">\${row.UnderFiveTreatedSeverePneumonia}</td>
-      <td contenteditable data-field="UnderFiveMedGuidelines">\${row.UnderFiveMedGuidelines}</td>
-      <td contenteditable data-field="SkillStationsFunctional">\${row.SkillStationsFunctional}</td>
-      <td contenteditable data-field="InfantsGivenPCV1">\${row.InfantsGivenPCV1}</td>
-      <td contenteditable data-field="InfantsGivenPCVBooster">\${row.InfantsGivenPCVBooster}</td>
+    tr.innerHTML = `
+      <td>${i + 1}</td>
+      <td contenteditable data-field="Month">${row.Month || ''}</td>
+      <td contenteditable data-field="BlockName">${row.BlockName || ''}</td>
+      <td contenteditable data-field="NodalOfficer">${row.NodalOfficer || ''}</td>
+      <td contenteditable data-field="DistrictInaugurated">${row.DistrictInaugurated || ''}</td>
+      <td contenteditable data-field="BlocksInaugurated">${row.BlocksInaugurated || ''}</td>
+      <td contenteditable data-field="ASHAsTrained">${row.ASHAsTrained || ''}</td>
+      <!-- keep all the remaining fields with “|| ''” the same way -->
       <td><button class="btn btn-sm btn-primary save-btn">Save</button></td>
-    \`;
+    `;
     tr.querySelector('.save-btn').onclick = () => saveRow(i, tr);
     tableBody.appendChild(tr);
   });
-};
+}
 
-const saveRow = async (index, rowElement) => {
+async function saveRow(index, rowElement) {
   const updatedData = {};
   rowElement.querySelectorAll('[contenteditable]').forEach(cell => {
     updatedData[cell.dataset.field] = cell.textContent.trim();
   });
   const res = await fetch('/data/' + index, {
     method: 'PUT',
-    headers: {'Content-Type':'application/json'},
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(updatedData)
   });
-  if (res.ok) alert('Row updated');
-  else alert('Error updating row');
-  fetchData();
-};
+  if (res.ok) {
+    alert('Row updated');
+    fetchData();
+  } else {
+    alert('Error updating row');
+  }
+}
 
-form.onsubmit = async (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(form);
   const obj = {};
   formData.forEach((value, key) => obj[key] = value);
   const res = await fetch('/data', {
     method: 'POST',
-    headers: {'Content-Type':'application/json'},
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(obj)
   });
   if (res.ok) {
     form.reset();
-    fetchData();
+    fetchData();   // this is what repopulates the table
+  } else {
+    alert('Error adding data');
   }
-};
-
-const downloadCSV = () => {
+});
+function downloadCSV() {
   fetch('/data')
     .then(res => res.json())
     .then(data => {
-      if (!data.length) return;
+      if (!data || !data.length) {
+        alert('No data to download');
+        return;
+      }
       const keys = Object.keys(data[0]);
-      const csv = [
-        keys.join(','),
-        ...data.map(row => keys.map(k => \`"\${row[k] || ''}"\`).join(','))
-      ].join('\\n');
-      const blob = new Blob([csv], {type: 'text/csv'});
+      const csvLines = [
+        keys.join(','),                                    // header
+        ...data.map(row => keys
+          .map(k => `"${(row[k] ?? '').toString().replace(/"/g, '""')}"`)
+          .join(',')
+        )
+      ];
+      const blob = new Blob([csvLines.join('\n')], { type: 'text/csv' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -154,12 +149,20 @@ const downloadCSV = () => {
       document.body.appendChild(a);
       a.click();
       a.remove();
+      URL.revokeObjectURL(url);
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Error generating CSV');
     });
-};
+}
 
-document.getElementById('downloadBtn').onclick = downloadCSV;
+document.getElementById('downloadBtn').addEventListener('click', downloadCSV);
 
+// initial load
 fetchData();
+</script>
+
 </script>
 
 </body>
